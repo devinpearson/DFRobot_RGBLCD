@@ -26,7 +26,7 @@ void setup() {
     // initialize
     lcd.init();
     // Print a message to the LCD.
-    lcd.print("set cllor");
+    lcd.print("set color");
 }
 
 void loop() {
