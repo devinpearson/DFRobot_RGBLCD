@@ -19,6 +19,7 @@
 
 #include "DFRobot_RGBLCD.h"
 
+/** Define the color RGB values */
 const uint8_t color_define[4][3] = 
 {
     {255, 255, 255},            // white

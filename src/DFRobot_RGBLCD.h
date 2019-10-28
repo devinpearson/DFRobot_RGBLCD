@@ -37,9 +37,9 @@
 #define REG_GREEN       0x03 ///< PWM1
 #define REG_BLUE        0x02 ///< PWM0
 
-#define REG_MODE1       0x00
-#define REG_MODE2       0x01
-#define REG_OUTPUT      0x08
+#define REG_MODE1       0x00 ///< mode 1 id
+#define REG_MODE2       0x01 ///< mode 2 id
+#define REG_OUTPUT      0x08 ///< output id
 
 /*!
  *  @brief commands
@@ -56,38 +56,38 @@
 /*!
  *  @brief flags for display entry mode
  */
-#define LCD_ENTRYRIGHT 0x00
-#define LCD_ENTRYLEFT 0x02
-#define LCD_ENTRYSHIFTINCREMENT 0x01
-#define LCD_ENTRYSHIFTDECREMENT 0x00
+#define LCD_ENTRYRIGHT 0x00           ///< Flag id for LCD_ENTRYRIGHT
+#define LCD_ENTRYLEFT 0x02            ///< Flag id for LCD_ENTRYLEFT
+#define LCD_ENTRYSHIFTINCREMENT 0x01  ///< Flag id for LCD_ENTRYSHIFTINCREMENT
+#define LCD_ENTRYSHIFTDECREMENT 0x00  ///< Flag id for LCD_ENTRYSHIFTDECREMENT
 
 /*!
  *  @brief flags for display on/off control
  */
-#define LCD_DISPLAYON 0x04
-#define LCD_DISPLAYOFF 0x00
-#define LCD_CURSORON 0x02
-#define LCD_CURSOROFF 0x00
-#define LCD_BLINKON 0x01
-#define LCD_BLINKOFF 0x00
+#define LCD_DISPLAYON 0x04  ///< Flag id for display on
+#define LCD_DISPLAYOFF 0x00 ///< Flag id for display off
+#define LCD_CURSORON 0x02   ///< Flag id for cursor on
+#define LCD_CURSOROFF 0x00  ///< Flag id for cursor off
+#define LCD_BLINKON 0x01    ///< Flag id for blink on
+#define LCD_BLINKOFF 0x00   ///< Flag id for blink off
 
 /*!
  *  @brief flags for display/cursor shift
  */
-#define LCD_DISPLAYMOVE 0x08
-#define LCD_CURSORMOVE 0x00
-#define LCD_MOVERIGHT 0x04
-#define LCD_MOVELEFT 0x00
+#define LCD_DISPLAYMOVE 0x08  ///< Flag id for display move
+#define LCD_CURSORMOVE 0x00   ///< Flag id for cursor move
+#define LCD_MOVERIGHT 0x04    ///< Flag id for move right
+#define LCD_MOVELEFT 0x00     ///< Flag id for move left
 
 /*!
  *  @brief flags for function set
  */
-#define LCD_8BITMODE 0x10
-#define LCD_4BITMODE 0x00
-#define LCD_2LINE 0x08
-#define LCD_1LINE 0x00
-#define LCD_5x10DOTS 0x04
-#define LCD_5x8DOTS 0x00
+#define LCD_8BITMODE 0x10   ///< Flag id for 8bit mode
+#define LCD_4BITMODE 0x00   ///< Flag id for 4bit mode
+#define LCD_2LINE 0x08      ///< Flag id for 2 line
+#define LCD_1LINE 0x00      ///< Flag id for 1 line
+#define LCD_5x10DOTS 0x04   ///< Flag id for 5x10 dots
+#define LCD_5x8DOTS 0x00    ///< Flag id for 5x8 dots
 
 /**************************************************************************/
 /*! 
@@ -116,32 +116,49 @@ public:
    *  @brief initialize
    */ 
   void init();
-  
+  /*!
+   *  @brief clears the display
+   */
   void clear();
+  /*!
+   *  @brief sets the cursor to zero
+   */
   void home();
 
   /*!
    *  @brief Turn the display on/off (quickly)
    */
   void noDisplay();
+  /*!
+   *  @brief turns on the display
+   */
   void display();
 
   /*!
    *  @brief Turn on and off the blinking showCursor
    */
   void stopBlink();
+  /*!
+   *  @brief blink the cursor
+   */
   void blink();
 
   /*!
    *  @brief Turns the underline showCursor on/off
    */
   void noCursor();
+  /*!
+   *  @brief turns on the underline cursor
+   */
   void cursor();
 
   /*!
    *  @brief These commands scroll the display without changing the RAM
    */
   void scrollDisplayLeft();
+  /*!
+   *  @brief scrolls the text right
+   */
   void scrollDisplayRight();
  
   /*!
@@ -169,21 +186,39 @@ public:
    *		 with custom characters
    */
   void customSymbol(uint8_t, uint8_t[]);
+  /*!
+   *  @brief sets the cursor location
+   */
   void setCursor(uint8_t, uint8_t);  
   
   /*!
-   *  @brief color control
+   *  @brief sets the rgb colour of the backlight
    */
   void setRGB(uint8_t r, uint8_t g, uint8_t b);               // set rgb
+  /*!
+   *  @brief sets the pwm value for the color
+   */
   void setPWM(uint8_t color, uint8_t pwm){setReg(color, pwm);}      // set pwm 
+  /*!
+   *  @brief sets the color of the backlight
+   */
   void setColor(uint8_t color);
+  /*!
+   *  @brief resets the color
+   */
   void setColorAll(){setRGB(0, 0, 0);}
+  /*!
+   *  @brief sets the color to white
+   */
   void setColorWhite(){setRGB(255, 255, 255);}
 
   /*!
    *  @brief blink the LED backlight
    */
   void blinkLED(void);
+  /*!
+   *  @brief turns off blinking of the LED backlight
+   */
   void noBlinkLED(void);
 
   /*!
@@ -197,27 +232,69 @@ public:
   void command(uint8_t);
   
   /*!
-   *  @brief compatibility API function aliases
+   *  @brief blink() alias compatibility API function aliases
    */
   void blink_on();						// alias for blink()
+  /*!
+   *  @brief noBlink() alias compatibility API function aliases
+   */
   void blink_off();       					// alias for noBlink()
+  /*!
+   *  @brief cursor() alias compatibility API function aliases
+   */
   void cursor_on();      	 					// alias for cursor()
+  /*!
+   *  @brief noCursor() alias compatibility API function aliases
+   */
   void cursor_off();      					// alias for noCursor()
+  /*!
+   *  @brief backlight() and nobacklight alias compatibility API function aliases
+   */
   void setBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
+  /*!
+   *  @brief createChar() alias compatibility API function aliases
+   */
   void load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
+  /*!
+   *  @brief alias compatibility API function aliases
+   */
   void printstr(const char[]);
   
   /*!
    *  @brief Unsupported API functions (not implemented in this library)
    */
   uint8_t status();
+  /*!
+   *  @brief unsupported
+   */
   void setContrast(uint8_t new_val);
+  /*!
+   *  @brief unsupported
+   */
   uint8_t keypad();
+  /*!
+   *  @brief unsupported
+   */
   void setDelay(int,int);
+  /*!
+   *  @brief unsupported
+   */
   void on();
+  /*!
+   *  @brief unsupported
+   */
   void off();
+  /*!
+   *  @brief unsupported
+   */
   uint8_t init_bargraph(uint8_t graphtype);
+  /*!
+   *  @brief unsupported
+   */
   void draw_horizontal_graph(uint8_t row, uint8_t column, uint8_t len,  uint8_t pixel_col_end);
+  /*!
+   *  @brief unsupported
+   */
   void draw_vertical_graph(uint8_t row, uint8_t column, uint8_t len,  uint8_t pixel_col_end);
   
   using Print::write;
