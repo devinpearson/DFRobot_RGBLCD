@@ -6,7 +6,7 @@
  * @copyright	[DFRobot](http://www.dfrobot.com), 2016
  * @copyright	GNU Lesser General Public License
  *
- * @author [yangyang](971326313@qq.com)
+ * @section author [yangyang](971326313@qq.com)
  * @version  V1.0
  * @date  2017-2-10
  */
@@ -19,23 +19,23 @@
 #include "Print.h"
 
 /*!
- *  @brief Device I2C Arress
+ *  @brief Device I2C Address
  */
-#define LCD_ADDRESS     (0x7c>>1)
-#define RGB_ADDRESS     (0xc0>>1)
+#define LCD_ADDRESS     (0x7c>>1) ///< LCD iic address
+#define RGB_ADDRESS     (0xc0>>1) ///< RGB light iic address
 
 
 /*!
  *  @brief color define
  */ 
-#define WHITE           0
-#define RED             1
-#define GREEN           2
-#define BLUE            3
+#define WHITE           0 ///< int value for the color WHITE
+#define RED             1 ///< int value for the color RED
+#define GREEN           2 ///< int value for the color GREEN
+#define BLUE            3 ///< int value for the color BLUE
 
-#define REG_RED         0x04        // pwm2
-#define REG_GREEN       0x03        // pwm1
-#define REG_BLUE        0x02        // pwm0
+#define REG_RED         0x04 ///< PWM2
+#define REG_GREEN       0x03 ///< PWM1
+#define REG_BLUE        0x02 ///< PWM0
 
 #define REG_MODE1       0x00
 #define REG_MODE2       0x01
@@ -44,14 +44,14 @@
 /*!
  *  @brief commands
  */
-#define LCD_CLEARDISPLAY 0x01
-#define LCD_RETURNHOME 0x02
-#define LCD_ENTRYMODESET 0x04
-#define LCD_DISPLAYCONTROL 0x08
-#define LCD_CURSORSHIFT 0x10
-#define LCD_FUNCTIONSET 0x20
-#define LCD_SETCGRAMADDR 0x40
-#define LCD_SETDDRAMADDR 0x80
+#define LCD_CLEARDISPLAY 0x01   ///< Command id for clearing the display
+#define LCD_RETURNHOME 0x02     ///< Command id for returning home
+#define LCD_ENTRYMODESET 0x04   ///< Command id for entry mode set
+#define LCD_DISPLAYCONTROL 0x08 ///< Command id for display control
+#define LCD_CURSORSHIFT 0x10    ///< Command id for cursor shift
+#define LCD_FUNCTIONSET 0x20    ///< Command id for function set
+#define LCD_SETCGRAMADDR 0x40   ///< Command id for set CGRAM Address
+#define LCD_SETDDRAMADDR 0x80   ///< Command id for set DDRAM Address
 
 /*!
  *  @brief flags for display entry mode
@@ -89,6 +89,19 @@
 #define LCD_5x10DOTS 0x04
 #define LCD_5x8DOTS 0x00
 
+/**************************************************************************/
+/*! 
+    @brief  Class that stores state and functions for interacting with DFRobot RGB LCD screen
+    @param  lcd_cols
+            Number of columns on the LCD screen
+    @param  lcd_rows
+            Number of rows on the LCD screen
+    @param  lcd_Addr
+            iic address
+    @param  RGB_Addr
+            address of the RGB controller
+*/
+/**************************************************************************/
 class DFRobot_RGBLCD : public Print 
 {
 
