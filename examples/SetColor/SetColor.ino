@@ -17,7 +17,7 @@
 #include "DFRobot_RGBLCD.h"
 
 char dtaUart[15];
-char dtaLen = 0;
+unsigned char dtaLen = 0;
 
 DFRobot_RGBLCD lcd(16,2);  //16 characters and 2 lines of show
 
