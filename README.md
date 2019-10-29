@@ -35,9 +35,7 @@ You can clear the display by this function:
     void noBlinkLED();
 
 
-* @n [Get the module here](等上架后添加商品购买链接)
-* @n This example Set the volume size and play music snippet.
-* @n [Connection and Diagram](等上架后添加wiki链接)
+* [Get the module here](https://www.dfrobot.com/product-1609.html)
 *
 * Copyright	[DFRobot](http://www.dfrobot.com), 2016
 * Copyright	GNU Lesser General Public License

@@ -89,8 +89,15 @@
 #define LCD_5x10DOTS 0x04   ///< Flag id for 5x10 dots
 #define LCD_5x8DOTS 0x00    ///< Flag id for 5x8 dots
 
-/**************************************************************************/
 /*! 
+    @brief  Class that stores state and functions for interacting with DFRobot RGB LCD screen
+*/
+class DFRobot_RGBLCD : public Print 
+{
+
+public:
+
+  /*! 
     @brief  Class that stores state and functions for interacting with DFRobot RGB LCD screen
     @param  lcd_cols
             Number of columns on the LCD screen
@@ -101,15 +108,6 @@
     @param  RGB_Addr
             address of the RGB controller
 */
-/**************************************************************************/
-class DFRobot_RGBLCD : public Print 
-{
-
-public:
-
-  /*!
-   *  @brief Constructor
-   */
   DFRobot_RGBLCD(uint8_t lcd_cols,uint8_t lcd_rows,uint8_t lcd_Addr=LCD_ADDRESS,uint8_t RGB_Addr=RGB_ADDRESS);
   
   /*!
@@ -193,14 +191,20 @@ public:
   
   /*!
    *  @brief sets the rgb colour of the backlight
+   *  @param r
+   *  @param g
+   *  @param b
    */
   void setRGB(uint8_t r, uint8_t g, uint8_t b);               // set rgb
   /*!
    *  @brief sets the pwm value for the color
+   *  @param color
+   *  @param pwm
    */
   void setPWM(uint8_t color, uint8_t pwm){setReg(color, pwm);}      // set pwm 
   /*!
    *  @brief sets the color of the backlight
+   *  @param color
    */
   void setColor(uint8_t color);
   /*!
@@ -223,9 +227,11 @@ public:
 
   /*!
    *  @brief send data
+   *  @param value
+   *  @return size_t
    */
-  virtual size_t write(uint8_t);
-
+  virtual size_t write(uint8_t value);
+  
   /*!
    *  @brief send command
    */
@@ -249,10 +255,13 @@ public:
   void cursor_off();      					// alias for noCursor()
   /*!
    *  @brief backlight() and nobacklight alias compatibility API function aliases
+   *  @param new_val
    */
   void setBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
   /*!
    *  @brief createChar() alias compatibility API function aliases
+   *  @param char_num
+   *  @param rows
    */
   void load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
   /*!
@@ -262,14 +271,17 @@ public:
   
   /*!
    *  @brief Unsupported API functions (not implemented in this library)
+   *  @return uint8_t
    */
   uint8_t status();
   /*!
    *  @brief unsupported
+   *  @param new_val
    */
   void setContrast(uint8_t new_val);
   /*!
    *  @brief unsupported
+   *  @return uint8_t
    */
   uint8_t keypad();
   /*!
@@ -286,14 +298,24 @@ public:
   void off();
   /*!
    *  @brief unsupported
+   *  @param graphtype
+   *  @return uint8_t
    */
   uint8_t init_bargraph(uint8_t graphtype);
   /*!
    *  @brief unsupported
+   *  @param row
+   *  @param column
+   *  @param len
+   *  @param pixel_col_end
    */
   void draw_horizontal_graph(uint8_t row, uint8_t column, uint8_t len,  uint8_t pixel_col_end);
   /*!
    *  @brief unsupported
+   *  @param row
+   *  @param column
+   *  @param len
+   *  @param pixel_col_end
    */
   void draw_vertical_graph(uint8_t row, uint8_t column, uint8_t len,  uint8_t pixel_col_end);
   
