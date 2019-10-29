@@ -1,5 +1,9 @@
-Grove - LCD RGB Backlight
----------------------------------------------------------
+# Grove - LCD RGB Backlight Library [![Build Status](https://travis-ci.org/devinpearson/DFRobot_RGBLCD.svg?branch=master)](https://travis-ci.org/devinpearson/DFRobot_RGBLCD)
+
+This is a library for the DFRobot RGB Backlight display
+
+This library works with the RGB Backlit I2C LCD Display  
+    * https://www.dfrobot.com/product-1609.html
 
 ### Change Color of Backlight
 One of Grove - LCD RGB Backlight's most important feature is changing the backlight color. It's very simple; just use the folowing function:
@@ -34,12 +38,4 @@ You can clear the display by this function:
     void blinkLED();
     void noBlinkLED();
 
-
-* [Get the module here](https://www.dfrobot.com/product-1609.html)
-*
-* Copyright	[DFRobot](http://www.dfrobot.com), 2016
-* Copyright	GNU Lesser General Public License
-*
-* @author [yangyang](971326313@qq.com)
-* version  V1.0
-* date  2017-2-10
+Written by [yangyang](971326313@qq.com) for [DFRobot](http://www.dfrobot.com). GNU Lesser General Public License
